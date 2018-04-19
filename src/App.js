@@ -19,8 +19,31 @@ class App extends Component {
         });
 
         this.pubnub.init(this);
-        
   }
+
+  componentWillMount() {
+
+        this.pubnub.getStatus();
+
+        this.pubnub.subscribe({
+            channels: ['messageChannel','gpsChannel'],
+            withPresence: true
+        });
+
+        this.pubnub.getMessage('messageChannel', (msg) => {
+            this.setState({ messages: msg});
+        });
+
+        this.pubnub.getMessage('gpsChannel', (msg) => {
+            this.setState({ gpsLocation: msg});
+        });
+    }
+
+     componentWillUnmount() {
+        this.pubnub.unsubscribe({
+            channels: ['messageChannel']
+        });
+    }
 
   render() {
     return (
