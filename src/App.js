@@ -14,6 +14,7 @@ class App extends Component {
         };
 
         this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
+        this.publishGPSToChannel = this.publishGPSToChannel.bind(this);
 
         this.pubnub = new PubNubReact({
             publishKey: 'pub-c-c377ebaa-f828-40f5-8b64-9fef4ff4aeaa',
@@ -24,7 +25,6 @@ class App extends Component {
   }
 
   componentWillMount() {
-
         this.pubnub.getStatus();
 
         this.pubnub.subscribe({
@@ -43,7 +43,7 @@ class App extends Component {
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
-            channels: ['messageChannel']
+            channels: ['messageChannel','gpsChannel']
         });
     }
 
@@ -54,8 +54,16 @@ class App extends Component {
             });
     }
 
+      publishGPSToChannel(){
+         this.pubnub.publish({
+                message: Math.floor((Math.random() * 10) + 1) ,
+                channel: 'gpsChannel'
+            });
+    }
+
   render() {
     const messages = this.state.messages;
+    const gps      = this.state.gpsLocation; 
 
     return (
       <div>
@@ -63,13 +71,13 @@ class App extends Component {
           <Row>
               <Col xs={6} md={4}> <Button bsStyle="primary" onClick={this.publishMessageToChannel}>new msg</Button>  
               </Col>
-              <Col xs={6} md={4}> <Button bsStyle="success" >new gps</Button>
+              <Col xs={6} md={4}> <Button bsStyle="success" onClick={this.publishGPSToChannel} >new gps</Button>
               </Col>
           </Row>
           <Row>
               <Col xs={6} md={4}>  {messages.message} 
               </Col>
-              <Col xs={6} md={4}>
+              <Col xs={6} md={4}>  {gps.message}
               </Col>
           </Row>
         </Grid>
