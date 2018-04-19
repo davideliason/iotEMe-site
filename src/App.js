@@ -17,6 +17,9 @@ class App extends Component {
             publishKey: 'pub-c-c377ebaa-f828-40f5-8b64-9fef4ff4aeaa',
             subscribeKey: 'sub-c-8b9161d0-391a-11e8-9da7-9e748936d455'
         });
+
+        this.pubnub.init(this);
+        
   }
 
   render() {
