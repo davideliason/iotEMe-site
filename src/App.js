@@ -67,9 +67,9 @@ class App extends Component {
 
     return (
       <div>
-        <div class="jumbotron">
-          <h3 class="display-4"> IoT Empowering Me</h3>
-          <p> Personal safety in chaotic times and places</p>
+        <div className="jumbotron">
+          <h3 className="display-4"> IoT Empowering Me</h3>
+          <p className="lead"> Personal safety in chaotic times and places</p>
         </div>
         <Grid>
           <Row>
