@@ -40,11 +40,11 @@ class App extends Component {
             this.setState({ locations: msg});
         });
 
-         this.pubnub.getPresence('messagesChannel', (presence) => {
-    console.log(presence);
-  });
+        this.pubnub.getStatus((status) => {
+          console.log(status);
+        });
+      }
 
-    }
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
@@ -69,7 +69,7 @@ class App extends Component {
   render() {
     const messages  = this.state.messages;
     const locations = this.state.locations; 
-    const presence = this.pubnub.getPresence('messagesChannel');
+    const status = this.pubnub.getStatus();
 
     return (
       <div>
@@ -92,7 +92,7 @@ class App extends Component {
           </Row>
           <Row>
               
-              <Col xs={6} md={4}>  Presence: {presence.action}
+              <Col xs={6} md={4}>  Status: {status.category}
               </Col>
           </Row>
         </Grid>
