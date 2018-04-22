@@ -10,11 +10,11 @@ class App extends Component {
 
         this.state = {
             messages : "",
-            gpsLocation: ""
+            locations: ""
         };
 
         this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
-        this.publishGPSToChannel = this.publishGPSToChannel.bind(this);
+        this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
 
         this.pubnub = new PubNubReact({
             publishKey: 'pub-c-c377ebaa-f828-40f5-8b64-9fef4ff4aeaa',
@@ -28,42 +28,42 @@ class App extends Component {
         this.pubnub.getStatus();
 
         this.pubnub.subscribe({
-            channels: ['messageChannel','gpsChannel'],
+            channels: ['messagesChannel','locationChannel'],
             withPresence: true
         });
 
-        this.pubnub.getMessage('messageChannel', (msg) => {
+        this.pubnub.getMessage('messagesChannel', (msg) => {
             this.setState({ messages: msg});
         });
 
-        this.pubnub.getMessage('gpsChannel', (msg) => {
-            this.setState({ gpsLocation: msg});
+        this.pubnub.getMessage('locationChannel', (msg) => {
+            this.setState({ locations: msg});
         });
     }
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
-            channels: ['messageChannel','gpsChannel']
+            channels: ['messagesChannel','locationChannel']
         });
     }
 
       publishMessageToChannel(){
          this.pubnub.publish({
                 message: Math.floor((Math.random() * 10) + 1) ,
-                channel: 'messageChannel'
+                channel: 'messagesChannel'
             });
     }
 
-      publishGPSToChannel(){
+      publishLocationToChannel(){
          this.pubnub.publish({
                 message: Math.floor((Math.random() * 10) + 1) ,
-                channel: 'gpsChannel'
+                channel: 'locationChannel'
             });
     }
 
   render() {
-    const messages = this.state.messages;
-    const gps      = this.state.gpsLocation; 
+    const messages  = this.state.messages;
+    const locations = this.state.locations; 
 
     return (
       <div>
@@ -81,7 +81,7 @@ class App extends Component {
           <Row>
               <Col xs={6} md={4}>  {messages.message} 
               </Col>
-              <Col xs={6} md={4}>  {gps.message}
+              <Col xs={6} md={4}>  {locations.message}
               </Col>
           </Row>
         </Grid>
