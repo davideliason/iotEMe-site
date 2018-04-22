@@ -28,7 +28,7 @@ class App extends Component {
         this.pubnub.getStatus();
 
         this.pubnub.subscribe({
-            channels: ['messagesChannel','locationChannel'],
+            channels: ['messagesChannel','locationsChannel'],
             withPresence: true
         });
 
@@ -36,14 +36,19 @@ class App extends Component {
             this.setState({ messages: msg});
         });
 
-        this.pubnub.getMessage('locationChannel', (msg) => {
+        this.pubnub.getMessage('locationsChannel', (msg) => {
             this.setState({ locations: msg});
         });
+
+         this.pubnub.getPresence('messagesChannel', (presence) => {
+    console.log(presence);
+  });
+
     }
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
-            channels: ['messagesChannel','locationChannel']
+            channels: ['messagesChannel','locationsChannel']
         });
     }
 
@@ -57,13 +62,14 @@ class App extends Component {
       publishLocationToChannel(){
          this.pubnub.publish({
                 message: Math.floor((Math.random() * 10) + 1) ,
-                channel: 'locationChannel'
+                channel: 'locationsChannel'
             });
     }
 
   render() {
     const messages  = this.state.messages;
     const locations = this.state.locations; 
+    const presence = this.pubnub.getPresence('messagesChannel');
 
     return (
       <div>
@@ -75,13 +81,18 @@ class App extends Component {
           <Row>
               <Col xs={6} md={4}> <Button bsStyle="primary" onClick={this.publishMessageToChannel}>new msg</Button>  
               </Col>
-              <Col xs={6} md={4}> <Button bsStyle="success" onClick={this.publishGPSToChannel} >new gps</Button>
+              <Col xs={6} md={4}> <Button bsStyle="success" onClick={this.publishLocationToChannel} >new gps</Button>
               </Col>
           </Row>
           <Row>
               <Col xs={6} md={4}>  {messages.message} 
               </Col>
               <Col xs={6} md={4}>  {locations.message}
+              </Col>
+          </Row>
+          <Row>
+              
+              <Col xs={6} md={4}>  Presence: {presence.action}
               </Col>
           </Row>
         </Grid>
