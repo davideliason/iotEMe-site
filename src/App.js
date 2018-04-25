@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import PubNubReact from 'pubnub-react';
-
+import Message from './Message.js';
 
 class App extends Component {
   constructor(props){
@@ -90,6 +90,7 @@ class App extends Component {
               <Col xs={6} md={4}>  {locations.message}
               </Col>
           </Row>
+          <Message />
         </Grid>
       </div>
     );
