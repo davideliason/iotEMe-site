@@ -90,7 +90,7 @@ class App extends Component {
               <Col xs={6} md={4}>  {locations.message}
               </Col>
           </Row>
-          <Message />
+          <Message msg="prop" />
         </Grid>
       </div>
     );
