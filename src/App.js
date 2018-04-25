@@ -9,8 +9,8 @@ class App extends Component {
     super(props);
 
         this.state = {
-            messages : "",
-            locations: ""
+            messages : "start  msg data",
+            locations: "start location data"
         };
 
         this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
@@ -33,11 +33,11 @@ class App extends Component {
         });
 
         this.pubnub.getMessage('messagesChannel', (msg) => {
-            this.setState({ messages: msg});
+            this.setState({ messages: msg.channel});
         });
 
         this.pubnub.getMessage('locationsChannel', (msg) => {
-            this.setState({ locations: msg});
+            this.setState({ locations: msg.message});
         });
 
         this.pubnub.getStatus((status) => {
@@ -69,6 +69,7 @@ class App extends Component {
   render() {
     const messages  = this.state.messages;
     const locations = this.state.locations; 
+
     // const status = this.pubnub.getStatus();
 
     return (
@@ -85,12 +86,12 @@ class App extends Component {
               </Col>
           </Row>
           <Row>
-              <Col xs={6} md={4}>  {messages.message} 
+              <Col xs={6} md={4}>  {messages} 
               </Col>
-              <Col xs={6} md={4}>  {locations.message}
+              <Col xs={6} md={4}>  {locations}
               </Col>
           </Row>
-          <Message msg="prop" />
+          <Message msg={messages} />
         </Grid>
       </div>
     );
