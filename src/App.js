@@ -54,7 +54,7 @@ class App extends Component {
 
       publishMessageToChannel(){
          this.pubnub.publish({
-                message: Math.floor((Math.random() * 10) + 1) ,
+                message: "new number: " + Math.floor((Math.random() * 10) + 1) ,
                 channel: 'messagesChannel'
             });
     }
