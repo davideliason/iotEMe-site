@@ -69,7 +69,7 @@ class App extends Component {
   render() {
     const messages  = this.state.messages;
     const locations = this.state.locations; 
-    const status = this.pubnub.getStatus();
+    // const status = this.pubnub.getStatus();
 
     return (
       <div>
@@ -88,11 +88,6 @@ class App extends Component {
               <Col xs={6} md={4}>  {messages.message} 
               </Col>
               <Col xs={6} md={4}>  {locations.message}
-              </Col>
-          </Row>
-          <Row>
-              
-              <Col xs={6} md={4}>  Status: {status.category}
               </Col>
           </Row>
         </Grid>
