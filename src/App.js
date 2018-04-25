@@ -9,8 +9,8 @@ class App extends Component {
     super(props);
 
         this.state = {
-            messages : "start  msg data",
-            locations: "start location data"
+            messages : "",
+            locations: ""
         };
 
         this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
@@ -33,7 +33,7 @@ class App extends Component {
         });
 
         this.pubnub.getMessage('messagesChannel', (msg) => {
-            this.setState({ messages: msg.channel});
+            this.setState({ messages: msg.message});
         });
 
         this.pubnub.getMessage('locationsChannel', (msg) => {
@@ -86,12 +86,13 @@ class App extends Component {
               </Col>
           </Row>
           <Row>
-              <Col xs={6} md={4}>  {messages} 
+              <Col xs={6} md={4}>
+                  <Message msg={messages} />
               </Col>
               <Col xs={6} md={4}>  {locations}
               </Col>
           </Row>
-          <Message msg={messages} />
+         
         </Grid>
       </div>
     );
