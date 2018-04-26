@@ -26,9 +26,9 @@ function getGPSRejectedAction() {
   }
 }
 
-function getGPSFulfilledAction(books) {
+function getGPSFulfilledAction(gps) {
   return {
     type: 'GetGPSFulfilled',
-    books
+    gps
   };
 }
