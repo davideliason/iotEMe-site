@@ -15,7 +15,22 @@ export default function gpsReducer(state={},action){
 			});
 		}
 
-		
+		case 'GetGPSFulfilled': {
+			// grab gps data payload from action
+			const {gps} = action.gps;
+			const newState = Object.assign({},state,{
+				inProgress: false,
+				error: false
+			});
+			// populate the new state of gps data
+			// reset data array
+			newState.gps = [];
+			if(gps){
+				// hydrate array with new data
+				newState.gps = Object.keys(gps).map(k => gps[k]);
+			}
+			return newState
+		}
 
 		case 'AddGPSRequested': {
 			return Object.assign({},state,{
