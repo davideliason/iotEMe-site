@@ -13,9 +13,17 @@ let logger = createLogger({
 });
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
+
+// test action creator and reducer for messages
 store.dispatch({type: 'messageAdded',
 				message: 'new message'
 				});
+// now test action creator and reducer for gps
+store.dispatch({
+	type: 'gpsAdded',
+	gps: 'portland oregon'
+});	
+// print out state
 console.log(store.getState());
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
 
