@@ -6,6 +6,7 @@ import {applyMiddleware,createStore} from 'redux';
 import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
 import rootReducer from './common/redux/reducers/rootReducer';
+import addGPS from './common/redux/actions/addGPS.js';
 
 let logger = createLogger({
 	timestamp:true,
@@ -13,6 +14,10 @@ let logger = createLogger({
 });
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
+
+store.dispatch(addGPS(1,"now","lat","long"));
+
+
 
 // test action creator and reducer for messages
 // store.dispatch({type: 'messageAdded',

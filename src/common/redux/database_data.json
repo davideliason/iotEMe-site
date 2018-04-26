@@ -1,0 +1,16 @@
+{
+	"gps" : {
+		"data1" : {
+			"clientID" : "1",
+			"time" : "0221",
+			"lat" : "lat1",
+			"long" : "long1"
+		},
+		"data2" : {
+			"clientID" : "2",
+			"time" : "0222",
+			"lat" : "lat2",
+			"long" : "long2"
+		}
+	}
+}
