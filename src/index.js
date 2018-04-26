@@ -15,19 +15,25 @@ let logger = createLogger({
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
 
 // test action creator and reducer for messages
-store.dispatch({type: 'messageAdded',
-				message: 'new message'
-				});
+// store.dispatch({type: 'messageAdded',
+// 				message: 'new message'
+// 				});
 // now test action creator and reducer for gps
-store.dispatch({
-	type: 'gpsAdded',
-	gps: 'portland oregon'
-});	
+// store.dispatch({
+// 	type: 'gpsAdded',
+// 	gps: 'portland oregon'
+// });	
 // test changing gps filter
-store.dispatch({
-	type: 'SET_FILTER',
-	filter: 'what what'
-})
+// store.dispatch({
+// 	type: 'SET_GPS_FILTER',
+// 	filter: 'what what gps filter'
+// });
+
+// test messaages filter
+// store.dispatch({
+// 	type: 'SET_MESSAGES_FILTER',
+// 	filter: 'what what messages filter'
+// })
 // print out state
 console.log(store.getState());
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
