@@ -3,7 +3,9 @@ import database from '../database.js';
 export default function addGPS(userID,time,latitude,longitude){
 	return dispatch => {
 		dispatch(addGPSRequestAction());
+		// grab the gps db object
 		const gpsRef = database.ref('/gps');
+		// push new object into array
 		gpsRef.push({
 			userID,
 			time,
