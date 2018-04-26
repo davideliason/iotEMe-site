@@ -13,6 +13,9 @@ let logger = createLogger({
 });
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
+store.dispatch({type: 'messageAdded',
+				message: 'new message'
+				});
 console.log(store.getState());
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
 
