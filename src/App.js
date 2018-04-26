@@ -10,7 +10,8 @@ class App extends Component {
 
         this.state = {
             messages : "",
-            locations: ""
+            locations: "",
+            gps: []
         };
 
         this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
@@ -67,13 +68,15 @@ class App extends Component {
     }
 
   render() {
-    const messages  = this.state.messages;
-    const locations = this.state.locations; 
+    const {messages}  = this.props.messages;
+    const locations = this.props.locations; 
+    const {gps} = this.props.gps;
 
     // const status = this.pubnub.getStatus();
 
     return (
       <div>
+       {messages}
         <div className="jumbotron">
           <h3 className="display-4"> IoT Empowering Me</h3>
           <p className="lead"> Personal safety in chaotic times and places</p>
