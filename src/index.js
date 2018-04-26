@@ -23,6 +23,11 @@ store.dispatch({
 	type: 'gpsAdded',
 	gps: 'portland oregon'
 });	
+// test changing gps filter
+store.dispatch({
+	type: 'SET_FILTER',
+	filter: 'what what'
+})
 // print out state
 console.log(store.getState());
 ReactDOM.render(<AppContainer />, document.getElementById('root'));
