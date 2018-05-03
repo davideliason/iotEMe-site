@@ -2,33 +2,33 @@ import database from '../database.js';
 
 export default function getGPSDataFromFirebase(){
 	return dispatch => {
-		dispatch(getGPSRequestedAction());
+		dispatch(getGPSDataRequestedAction());
 		return database.ref('/').once('value', snap => {
 			const gps = snap.val();
-			dispatch(getGPSFulfilledAction(gps))
+			dispatch(getGPSDataFulfilledAction(gps))
 		})
 		.catch((error) => {
 			console.log(error);
-			dispatch(getGPSRejectedAction());
+			dispatch(getGPSDataRejectedAction());
 		});
 	}
 }
 
-function getGPSRequestedAction() {
+function getGPSDataRequestedAction() {
   return {
-    type: 'GetGPSRequested'
+    type: 'GetGPSDataRequested'
   };
 }
 
-function getGPSRejectedAction() {
+function getGPSDataRejectedAction() {
   return {
-    type: 'GetGPSRejected'
+    type: 'GetGPSDataRejected'
   }
 }
 
-function getGPSFulfilledAction(gps) {
+function getGPSDataFulfilledAction(gps) {
   return {
-    type: 'GetGPSFulfilled',
+    type: 'GetGPSDataFulfilled',
     gps
   };
 }

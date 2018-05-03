@@ -1,21 +1,21 @@
-export default function gpsReducer(state={},action){
+export default function gpsDataReducer(state={},action){
 	switch(action.type){
 
-		case 'GetGPSRequested': {
+		case 'GetGPSDataRequested': {
 			return Object.assign({},state,{
 				inProgress: true,
 				error: false
 			});
 		}
 
-		case 'GetGPSRejected': {
+		case 'GetGPSDataRejected': {
 			return Object.assign({},state,{
 				inProgress: false,
 				error: true
 			});
 		}
 
-		case 'GetGPSFulfilled': {
+		case 'GetGPSDataFulfilled': {
 			// grab gps data payload from action
 			const {gps} = action.gps;
 			const newState = Object.assign({},state,{
@@ -32,21 +32,21 @@ export default function gpsReducer(state={},action){
 			return newState
 		}
 
-		case 'AddGPSRequested': {
+		case 'AddGPSDataRequested': {
 			return Object.assign({},state,{
 				inProgress: true,
 				error: false
 			});
 		} 
 
-		case 'AddGPSRejected': {
+		case 'AddGPSDataRejected': {
 			return Object.assign({},state,{
 				inProgress: false,
 				error: true
 			});
 		}
 
-		case 'AddGPSFulfilled': {
+		case 'AddGPSDataFulfilled': {
 			return Object.assign({},state,{
 				inProgress: false,
 				error: false

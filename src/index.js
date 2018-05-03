@@ -7,6 +7,8 @@ import {applyMiddleware,createStore} from 'redux';
 import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
 import rootReducer from './common/redux/reducers/rootReducer';
+import addGPSDataToFirebase from './common/redux/actions/addGPSDataToFirebase.js';
+import getGPSDataFromFirebase from './common/redux/actions/getGPSDataFromFirebase.js';
 
 
 let logger = createLogger({
@@ -16,6 +18,8 @@ let logger = createLogger({
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
 
+store.dispatch(addGPSDataToFirebase("one","two"));
+store.dispatch(getGPSDataFromFirebase());
 // store.dispatch(addGPS(1,"now","lat","long"));
 // store.dispatch(getGPS());
 

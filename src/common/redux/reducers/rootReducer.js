@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import gpsReducer from './gpsReducer.js';
+import gpsDataReducer from './gpsDataReducer.js';
 import locationReducer from './locationReducer.js';
 
 const rootReducer = combineReducers({
-	gps: gpsReducer,
+	gps: gpsDataReducer,
 	location: locationReducer
 });
 
