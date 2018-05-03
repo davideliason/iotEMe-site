@@ -1,8 +1,7 @@
 import App from '../../App.js';
 import {connect} from 'react-redux';
-import addGPSToFirebase from '../redux/actions/addGPSToFirebase.js';
+import addGPSDataToFirebase from '../redux/actions/addGPSDataToFirebase.js';
 import getGPSDataFromFirebase from '../redux/actions/getGPSDataFromFirebase.js';
-
 
 function mapStateToProps(state){
 	return {
