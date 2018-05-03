@@ -1,8 +1,8 @@
 import database from '../database.js';
 
-export default function addGPS(latitude,longitude){
+export default function addGPSDataToFirebase(latitude,longitude){
 	return dispatch => {
-		dispatch(addGPSRequestAction());
+		dispatch(addGPSDataRequestAction());
 		// grab the gps db object
 		const gpsRef = database.ref('/gps');
 		// push new object into array
@@ -11,29 +11,29 @@ export default function addGPS(latitude,longitude){
 			longitude
 		})
 		.then(() => {
-			dispatch(addGPSFulfilledAction())
+			dispatch(addGPSDataFulfilledAction())
 		})
 		.catch((error) => {
 			console.log(error);
-			dispatch(addGPSRejectedAction());
+			dispatch(addGPSDataRejectedAction());
 		});
 	}
 }
 
-function addGPSRequestAction(){
+function addGPSDataRequestAction(){
 	return {
-		type: 'AddGPSRequested'
+		type: 'AddGPSDataRequested'
 	}
 }
 
-function addGPSRejectedAction(){
+function addGPSDataRejectedAction(){
 	return {
-		type: 'AddGPSRejected'
+		type: 'AddGPSDataRejected'
 	}
 }
 
-function addGPSFulfilledAction(){
+function addGPSDataFulfilledAction(){
 	return {
-		type: 'AddGPSFulfilled'
+		type: 'AddGPSDataFulfilled'
 	}
 }

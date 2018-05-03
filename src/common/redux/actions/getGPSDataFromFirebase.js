@@ -1,6 +1,6 @@
 import database from '../database.js';
 
-export default function getGPS(){
+export default function getGPSDataFromFirebase(){
 	return dispatch => {
 		dispatch(getGPSRequestedAction());
 		return database.ref('/').once('value', snap => {
