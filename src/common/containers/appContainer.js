@@ -8,7 +8,9 @@ function mapStateToProps(state){
 	return {
 		gps: state.gps,
 		messages: state.messages,
-		locations: state.locations
+		locations: state.locations,
+		gpsFilter: state.gpsfilter,
+		messagesFilter: state.messagesfilter
 	}
 }
 

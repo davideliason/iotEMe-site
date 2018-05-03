@@ -71,12 +71,13 @@ class App extends Component {
     const {messages}  = this.props.messages;
     const locations = this.props.locations; 
     const {gps} = this.props.gps;
+    const gpsfilter = this.props.gpsFilter;
+    const mesagesfilter = this.props.messagesFilter;
 
     // const status = this.pubnub.getStatus();
 
     return (
       <div>
-       {messages}
         <div className="jumbotron">
           <h3 className="display-4"> IoT Empowering Me</h3>
           <p className="lead"> Personal safety in chaotic times and places</p>
@@ -92,7 +93,7 @@ class App extends Component {
               <Col xs={6} md={4}>
                   <Message msg={messages} />
               </Col>
-              <Col xs={6} md={4}>  {locations}
+              <Col xs={6} md={4}>  {locations} : {gpsfilter} : {mesagesfilter}
               </Col>
           </Row>
          
