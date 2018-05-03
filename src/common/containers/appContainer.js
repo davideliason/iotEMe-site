@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import addGPS from '../redux/actions/addGPS.js';
 import getGPS from '../redux/actions/getGPS.js';
 
+import changeGPSFilter from '../redux/actions/changeGPSFilter.js';
+import changeMessagesFilter from '../redux/actions/changeMessagesFilter.js';
 
 function mapStateToProps(state){
 	return {
