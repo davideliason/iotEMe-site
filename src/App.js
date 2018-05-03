@@ -9,12 +9,10 @@ class App extends Component {
     super(props);
 
         this.state = {
-            messages : "",
-            locations: "",
-            gps: []
+            firebaseGps: [],
+            location: ""
         };
 
-        this.publishMessageToChannel = this.publishMessageToChannel.bind(this);
         this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
 
         this.pubnub = new PubNubReact({
@@ -29,16 +27,8 @@ class App extends Component {
         this.pubnub.getStatus();
 
         this.pubnub.subscribe({
-            channels: ['messagesChannel','locationsChannel'],
+            channels: ['locationChannel'],
             withPresence: true
-        });
-
-        this.pubnub.getMessage('messagesChannel', (msg) => {
-            this.setState({ messages: msg.message});
-        });
-
-        this.pubnub.getMessage('locationsChannel', (msg) => {
-            this.setState({ locations: msg.message});
         });
 
         this.pubnub.getStatus((status) => {
@@ -49,32 +39,20 @@ class App extends Component {
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
-            channels: ['messagesChannel','locationsChannel']
+            channels: ['locationChannel']
         });
-    }
-
-      publishMessageToChannel(){
-         this.pubnub.publish({
-                message: "new number: " + Math.floor((Math.random() * 10) + 1) ,
-                channel: 'messagesChannel'
-            });
     }
 
       publishLocationToChannel(){
          this.pubnub.publish({
                 message: Math.floor((Math.random() * 10) + 1) ,
-                channel: 'locationsChannel'
+                channel: 'locationChannel'
             });
     }
 
   render() {
-    const {messages}  = this.props.messages;
-    const locations = this.props.locations; 
+    const location = this.props.location; 
     const {gps} = this.props.gps;
-    const gpsfilter = this.props.gpsFilter;
-    const mesagesfilter = this.props.messagesFilter;
-
-    // const status = this.pubnub.getStatus();
 
     return (
       <div>
@@ -90,10 +68,9 @@ class App extends Component {
               </Col>
           </Row>
           <Row>
-              <Col xs={6} md={4}>
-                  <Message msg={messages} />
+              <Col xs={6} md={4}> col
               </Col>
-              <Col xs={6} md={4}>  {locations} : {gpsfilter} : {mesagesfilter}
+              <Col xs={6} md={4}>  {location} 
               </Col>
           </Row>
          

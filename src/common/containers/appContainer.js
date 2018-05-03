@@ -1,17 +1,13 @@
 import App from '../../App.js';
 import {connect} from 'react-redux';
-import addGPS from '../redux/actions/addGPS.js';
-import getGPS from '../redux/actions/getGPS.js';
+import addGPSToFirebase from '../redux/actions/addGPSToFirebase.js';
+import getGPSDataFromFirebase from '../redux/actions/getGPSDataFromFirebase.js';
 
-import changeGPSFilter from '../redux/actions/changeGPSFilter.js';
-import changeMessagesFilter from '../redux/actions/changeMessagesFilter.js';
 
 function mapStateToProps(state){
 	return {
 		gps: state.gps, // obj
-		messages: state.messages, // obj
-		gpsFilter: state.gpsfilter, // str
-		messagesFilter: state.messagesfilter //str
+		location: state.location //str
 	}
 }
 
