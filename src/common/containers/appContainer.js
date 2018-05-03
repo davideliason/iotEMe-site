@@ -6,11 +6,10 @@ import getGPS from '../redux/actions/getGPS.js';
 
 function mapStateToProps(state){
 	return {
-		gps: state.gps,
-		messages: state.messages,
-		locations: state.locations,
-		gpsFilter: state.gpsfilter,
-		messagesFilter: state.messagesfilter
+		gps: state.gps, // obj
+		messages: state.messages, // obj
+		gpsFilter: state.gpsfilter, // str
+		messagesFilter: state.messagesfilter //str
 	}
 }
 
