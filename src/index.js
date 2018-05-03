@@ -18,7 +18,7 @@ let logger = createLogger({
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
 
-store.dispatch(addGPSDataToFirebase("one","two"));
+store.dispatch(addGPSDataToFirebase());
 store.dispatch(getGPSDataFromFirebase());
 // store.dispatch(addGPS(1,"now","lat","long"));
 // store.dispatch(getGPS());
