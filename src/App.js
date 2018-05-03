@@ -70,8 +70,19 @@ class App extends Component {
           <Row>
               <Col xs={6} md={4}> col
               </Col>
-              <Col xs={6} md={4}>  {location} 
-              </Col>
+               <Col xs={6}>
+               {gps && gps.length > 0 ? (
+              <ul>
+                {gps.map((gps, index) => {
+                  return (
+                    <li key={index} >
+                      {gps.latitude} by {gps.longitude}
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+            </Col>
           </Row>
          
         </Grid>
