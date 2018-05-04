@@ -3,13 +3,13 @@ import {connect} from 'react-redux';
 
 import addGPSDataToFirebase from '../redux/actions/addGPSDataToFirebase.js';
 import getGPSDataFromFirebase from '../redux/actions/getGPSDataFromFirebase.js';
-
+import changeStateLocation from '../redux/actions/changeStateLocation.js';
 
 
 function mapStateToProps(state){
 	return {
 		gps: state.gps, // obj
-		location: state.location //str
+		gpsGeoLocationAsString: state.gpsGeoLocationAsString //str
 	}
 }
 

@@ -90,7 +90,7 @@ class App extends Component {
         </div>
         <Grid>
           <Row>
-              <Col xs={6} md={4}>  Last Latitude: {this.state.lastGPSLatitudeAdded} : Last Longitude: {this.state.lastGPSLongitudeAdded}
+              <Col xs={6} md={4}>  gpsGeoLocationAsString: {this.props.gpsGeoLocationAsString} Last Latitude: {this.state.lastGPSLatitudeAdded} : Last Longitude: {this.state.lastGPSLongitudeAdded}
               </Col>
           </Row>
           <Row>

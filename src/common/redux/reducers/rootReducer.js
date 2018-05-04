@@ -4,7 +4,7 @@ import locationReducer from './locationReducer.js';
 
 const rootReducer = combineReducers({
 	gps: gpsDataReducer,
-	location: locationReducer
+	gpsGeoLocationAsString: locationReducer
 });
 
 export default rootReducer;

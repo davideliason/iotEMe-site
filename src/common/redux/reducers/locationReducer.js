@@ -1,10 +1,13 @@
-export default function locationReducer(state="",action){
+export default function locationReducer(state="testlocationstring",action){
 	switch(action.type){
 
-		case 'SetLocationRequested': 
-		  return action.location
+		case 'SetLocationFulfilled': 
+		  return action.gpsGeoLocationAsString
 
 		default:
 			return state;
 	}
 }
+
+
+
