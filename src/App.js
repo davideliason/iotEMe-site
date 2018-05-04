@@ -8,13 +8,14 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      lastGPSLatitudeAdded: "x",
-      lastGPSLongitudeAdded: "y"
+      lastGPSLatitudeAdded: "",
+      lastGPSLongitudeAdded: ""
     }
 
     this.handleOnChangeLatitude = this.handleOnChangeLatitude.bind(this);
     this.handleOnChangeLongitude = this.handleOnChangeLongitude.bind(this);
 
+    this.handleAddGPSDataToFirebase = this.props.addGPSDataToFirebase.bind(this);
 
     this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
     this.pubnub = new PubNubReact({
@@ -69,10 +70,11 @@ class App extends Component {
     });
   }
 
-  handleSubmit(event){
-    console.log("new location added");
-    event.preventDefault();
-  }
+  // handleSubmit(event){
+  //   console.log("new location added");
+  //   event.preventDefault();
+  //   this.handleAddGPSDataToFirebase({this.state.lastGPSLatitudeAdded,this.state.lastGPSLongitudeAdded)};
+  // }
 
   render() {
     const location = this.props.location; 
@@ -93,7 +95,7 @@ class App extends Component {
           </Row>
           <Row>
               <Col xs={6} md={4}>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={() => {this.props.addGPSDataToFirebase(this.state.lastGPSLatitudeAdded, this.state.lastGPSLongitudeAdded)}}>
                  <input
                   type="text"
                   placeholder = "latitude"
@@ -106,7 +108,7 @@ class App extends Component {
                   value={this.state.lastGPSLongitudeAdded}
                   onChange={this.handleOnChangeLongitude}
                  />
-                 <input type="submit" value="Submit" />
+                 <Button className="btn btn-primary" type="submit" value="submit">Submit</Button>
                 </form>
               </Col>
                <Col xs={6}>
