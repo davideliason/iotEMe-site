@@ -8,7 +8,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      lastGPSLatitudeAdded: "",
+      lastGPSLatitudeAdded: "sampleData",
       lastGPSLongitudeAdded: ""
     }
 
@@ -37,10 +37,9 @@ class App extends Component {
 
       componentDidMount(){
         this.props.getGPSDataFromFirebase();
-        this.props.addGPSDataToFirebase("3","4");
-        this.setState({
-          firebaseGps : this.props.gps
-        })
+        // this.setState({
+        //   firebaseGps : this.props.gps
+        // })
       }
 
      componentWillUnmount() {
@@ -62,19 +61,19 @@ class App extends Component {
 
     return (
       <div>
+        <div>
+        </div>
         <div className="jumbotron">
           <h3 className="display-4"> IoT Empowering Me</h3>
           <p className="lead"> Personal safety in chaotic times and places</p>
         </div>
         <Grid>
           <Row>
-              <Col xs={6} md={4}> <Button bsStyle="success" onClick={this.publishLocationToChannel} >new gps</Button>
-              </Col>
-              <Col xs={6} md={4}> <button onClick={() => this.props.addGPSDataToFirebase("one","two")}>new gps</button>
+              <Col xs={6} md={4}> 
               </Col>
           </Row>
           <Row>
-              <Col xs={6} md={4}> 
+              <Col xs={6} md={4}>
               </Col>
                <Col xs={6}>
                {gps && gps.length > 0 ? (
