@@ -16,7 +16,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
 	return {
 		addGPSDataToFirebase : (latitude,longitude) => dispatch(addGPSDataToFirebase(latitude,longitude)),
-		getGPSDataFromFirebase : () => dispatch(getGPSDataFromFirebase())
+		getGPSDataFromFirebase : () => dispatch(getGPSDataFromFirebase()),
+		changeStateLocation : (gpsStringValue) => dispatch(changeStateLocation(gpsStringValue))
 	}
 }
 

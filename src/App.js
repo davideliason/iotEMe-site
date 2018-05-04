@@ -16,6 +16,7 @@ class App extends Component {
     this.handleOnChangeLongitude = this.handleOnChangeLongitude.bind(this);
 
     this.handleAddGPSDataToFirebase = this.props.addGPSDataToFirebase.bind(this);
+    // this.handleChangeStateLocation = this.props.changeStateLocation.bind(this);
 
     this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
     this.pubnub = new PubNubReact({
@@ -40,6 +41,7 @@ class App extends Component {
 
   componentDidMount(){
         this.props.getGPSDataFromFirebase();
+        // this.handleChangeStateLocation("testgeostring");
         // this.setState({
         //   firebaseGps : this.props.gps
         // })
@@ -95,7 +97,7 @@ class App extends Component {
           </Row>
           <Row>
               <Col xs={6} md={4}>
-                <form onSubmit={() => {this.props.addGPSDataToFirebase(this.state.lastGPSLatitudeAdded, this.state.lastGPSLongitudeAdded)}}>
+                <form onSubmit={() => {this.handleAddGPSDataToFirebase(this.state.lastGPSLatitudeAdded, this.state.lastGPSLongitudeAdded)}}>
                  <input
                   type="text"
                   placeholder = "latitude"
