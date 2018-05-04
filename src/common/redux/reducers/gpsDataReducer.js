@@ -16,8 +16,9 @@ export default function gpsDataReducer(state={},action){
 		}
 
 		case 'GetGPSDataFulfilled': {
-			// grab gps data payload from action
+			// grab gps data payload from within wrapper gps obj
 			const {gps} = action.gps;
+			console.log({gps});
 			const newState = Object.assign({},state,{
 				inProgress: false,
 				error: false

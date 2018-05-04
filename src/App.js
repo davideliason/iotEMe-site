@@ -8,11 +8,6 @@ class App extends Component {
   constructor(props){
     super(props);
 
-        this.state = {
-            firebaseGps: [],
-            location: ""
-        };
-
         this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
 
         this.pubnub = new PubNubReact({
@@ -36,6 +31,13 @@ class App extends Component {
         });
       }
 
+      componentDidMount(){
+        this.props.getGPSDataFromFirebase();
+        this.props.addGPSDataToFirebase("3","4");
+        this.setState({
+          firebaseGps : this.props.gps
+        })
+      }
 
      componentWillUnmount() {
         this.pubnub.unsubscribe({
@@ -62,13 +64,13 @@ class App extends Component {
         </div>
         <Grid>
           <Row>
-              <Col xs={6} md={4}> <Button bsStyle="primary" onClick={this.publishMessageToChannel}>new msg</Button>  
-              </Col>
               <Col xs={6} md={4}> <Button bsStyle="success" onClick={this.publishLocationToChannel} >new gps</Button>
+              </Col>
+              <Col xs={6} md={4}> <button onClick={() => this.props.addGPSDataToFirebase("one","two")}>new gps</button>
               </Col>
           </Row>
           <Row>
-              <Col xs={6} md={4}> col
+              <Col xs={6} md={4}> 
               </Col>
                <Col xs={6}>
                {gps && gps.length > 0 ? (
@@ -76,7 +78,7 @@ class App extends Component {
                 {gps.map((gps, index) => {
                   return (
                     <li key={index} >
-                      {gps.latitude} by {gps.longitude}
+                      Latitude: {gps.latitude} - Longitude: {gps.longitude}
                     </li>
                   );
                 })}
@@ -84,7 +86,6 @@ class App extends Component {
             ) : null}
             </Col>
           </Row>
-         
         </Grid>
       </div>
     );
