@@ -7,6 +7,10 @@ import Message from './Message.js';
 class App extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      lastGPSLatitudeAdded: "",
+      lastGPSLongitudeAdded: ""
+    }
 
         this.publishLocationToChannel = this.publishLocationToChannel.bind(this);
 
