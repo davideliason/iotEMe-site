@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import PubNubReact from 'pubnub-react';
-import Message from './Message.js';
 
 class App extends Component {
   constructor(props){
@@ -41,7 +40,7 @@ class App extends Component {
 
   componentDidMount(){
         this.props.getGPSDataFromFirebase();
-        // this.handleChangeStateLocation("testgeostring");
+        this.props.changeStateLocation("testgeostring");
         // this.setState({
         //   firebaseGps : this.props.gps
         // })
@@ -79,7 +78,7 @@ class App extends Component {
   // }
 
   render() {
-    const location = this.props.location; 
+    // const location = this.props.location; 
     const {gps} = this.props.gps;
 
     return (

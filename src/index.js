@@ -9,8 +9,8 @@ import thunk from 'redux-thunk';
 import rootReducer from './common/redux/reducers/rootReducer';
 
 // test dispatch methods
-import addGPSDataToFirebase from './common/redux/actions/addGPSDataToFirebase.js';
-import getGPSDataFromFirebase from './common/redux/actions/getGPSDataFromFirebase.js';
+// import addGPSDataToFirebase from './common/redux/actions/addGPSDataToFirebase.js';
+// import getGPSDataFromFirebase from './common/redux/actions/getGPSDataFromFirebase.js';
 
 
 let logger = createLogger({

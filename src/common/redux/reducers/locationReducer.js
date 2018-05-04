@@ -1,4 +1,4 @@
-export default function locationReducer(state="testlocationstring",action){
+export default function locationReducer(state="test statelocation string",action){
 	switch(action.type){
 
 		case 'SetLocationFulfilled': 
