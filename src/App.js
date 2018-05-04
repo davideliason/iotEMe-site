@@ -69,11 +69,16 @@ class App extends Component {
         </div>
         <Grid>
           <Row>
-              <Col xs={6} md={4}> 
+              <Col xs={6} md={4}> Last Latitude: {this.state.lastGPSLatitudeAdded}
               </Col>
           </Row>
           <Row>
               <Col xs={6} md={4}>
+                <input type="text" 
+                placeholder="new latitude"
+                value={this.state.lastGPSLatitudeAdded}
+                onChange={e => this.setState({ lastGPSLatitudeAdded: e.target.value })}
+                />
               </Col>
                <Col xs={6}>
                {gps && gps.length > 0 ? (

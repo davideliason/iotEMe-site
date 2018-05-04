@@ -30,6 +30,7 @@ export default function gpsDataReducer(state={},action){
 				// hydrate array with new data
 				newState.gps = Object.keys(gps).map(k => gps[k]);
 			}
+			    newState.lastLocation = newState.gps.slice(-1)[0];
 			return newState
 		}
 
