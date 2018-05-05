@@ -9,7 +9,7 @@ import changeStateLocation from '../redux/actions/changeStateLocation.js';
 function mapStateToProps(state){
 	return {
 		gps: state.gps, // obj
-		gpsGeoLocationAsString: state.gpsGeoLocationAsString //str
+		gpsGeoLocationAsObject: state.gpsGeoLocationAsString //str
 	}
 }
 

@@ -106,7 +106,7 @@ class App extends Component {
         <div className="jumbotron">
           <h3 className="display-4"> IoT Empowering Me</h3>
           <p className="lead"> Personal safety in chaotic times and places</p>
-          <p>look: {this.props.gpsGeoLocationAsString.message}</p>
+          <p>look: {this.props.gpsGeoLocationAsObject.message}</p>
         </div>
         <Grid>
           <Row>
