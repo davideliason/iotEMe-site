@@ -7,6 +7,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      // state values to be pushed as object to firebase db
       lastGPSLatitudeAdded: "",
       lastGPSLongitudeAdded: ""
     }
@@ -41,6 +42,8 @@ class App extends Component {
   componentDidMount(){
         this.props.getGPSDataFromFirebase();
         this.props.changeStateLocation("testgeostring");
+        this.props.changeStateLocation("wootpassedfunctionworks");
+
         // this.setState({
         //   firebaseGps : this.props.gps
         // })
@@ -79,6 +82,7 @@ class App extends Component {
 
   render() {
     // const location = this.props.location; 
+
     const {gps} = this.props.gps;
 
     return (
