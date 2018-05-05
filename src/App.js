@@ -8,8 +8,9 @@ class App extends Component {
     super(props);
     this.state = {
       // state values to be pushed as object to firebase db
-      lastGPSLatitudeAdded: "testGPSLatitude",
-      lastGPSLongitudeAdded: ""
+      lastGPSLatitudeAdded: "",
+      lastGPSLongitudeAdded: "",
+      lastGPSDataStringFromPubNub: ""
     }
 
     this.handleOnChangeLatitude = this.handleOnChangeLatitude.bind(this);
@@ -34,8 +35,15 @@ class App extends Component {
             withPresence: true
         });
 
-        this.pubnub.getStatus((status) => {
-          console.log(status);
+        this.pubnub.getMessage('locationChannel', (msg) => {
+          console.log(msg);
+        });
+
+         this.pubnub.getStatus((status) => {
+          this.pubnub.publish( {
+            message : "hello world from react",
+            channel : 'locationChannel'
+          });
         });
       }
 
@@ -44,6 +52,10 @@ class App extends Component {
         this.props.changeStateLocation("testgeostring");
         this.props.changeStateLocation(this.state.lastGPSLatitudeAdded);
 
+        this.pubnub.publish({
+                message: Math.floor((Math.random() * 10) + 1) ,
+                channel: 'locationChannel'
+            });
         // this.setState({
         //   firebaseGps : this.props.gps
         // })
@@ -84,6 +96,7 @@ class App extends Component {
     // const location = this.props.location; 
 
     const {gps} = this.props.gps;
+    const messages = this.pubnub.getMessage('locationChannel');
 
     return (
       <div>
@@ -95,7 +108,10 @@ class App extends Component {
         </div>
         <Grid>
           <Row>
-              <Col xs={6} md={4}>  gpsGeoLocationAsString: {this.props.gpsGeoLocationAsString} Last Latitude: {this.state.lastGPSLatitudeAdded} : Last Longitude: {this.state.lastGPSLongitudeAdded}
+              <Col xs={6} md={4}> 
+                  <ul>
+                    {messages.map((m, index) => <li key={'message' + index}>{m.message}</li>)}
+                </ul>
               </Col>
           </Row>
           <Row>
