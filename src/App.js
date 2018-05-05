@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       // state values to be pushed as object to firebase db
-      lastGPSLatitudeAdded: "",
+      lastGPSLatitudeAdded: "testGPSLatitude",
       lastGPSLongitudeAdded: ""
     }
 
@@ -42,7 +42,7 @@ class App extends Component {
   componentDidMount(){
         this.props.getGPSDataFromFirebase();
         this.props.changeStateLocation("testgeostring");
-        this.props.changeStateLocation("wootpassedfunctionworks");
+        this.props.changeStateLocation(this.state.lastGPSLatitudeAdded);
 
         // this.setState({
         //   firebaseGps : this.props.gps
