@@ -37,6 +37,7 @@ class App extends Component {
 
         this.pubnub.getMessage('locationChannel', (msg) => {
           console.log(msg);
+          this.props.changeStateLocation(msg);
         });
 
          this.pubnub.getStatus((status) => {
@@ -105,6 +106,7 @@ class App extends Component {
         <div className="jumbotron">
           <h3 className="display-4"> IoT Empowering Me</h3>
           <p className="lead"> Personal safety in chaotic times and places</p>
+          <p>look: {this.props.gpsGeoLocationAsString.message}</p>
         </div>
         <Grid>
           <Row>
