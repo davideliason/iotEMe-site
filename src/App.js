@@ -38,6 +38,7 @@ class App extends Component {
         this.pubnub.getMessage('locationChannel', (msg) => {
           console.log(msg);
           this.props.changeStateLocation(msg);
+          this.props.addGPSDataToFirebase(msg.message,msg.message);
         });
 
          this.pubnub.getStatus((status) => {
