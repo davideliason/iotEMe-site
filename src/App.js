@@ -42,10 +42,6 @@ class App extends Component {
         });
 
          this.pubnub.getStatus((status) => {
-          this.pubnub.publish( {
-            message : "hello world from react",
-            channel : 'locationChannel'
-          });
         });
       }
 
@@ -54,10 +50,10 @@ class App extends Component {
         this.props.changeStateLocation("testgeostring");
         this.props.changeStateLocation(this.state.lastGPSLatitudeAdded);
 
-        this.pubnub.publish({
-                message: Math.floor((Math.random() * 10) + 1) ,
-                channel: 'locationChannel'
-            });
+        // this.pubnub.publish({
+        //         message: Math.floor((Math.random() * 10) + 1) ,
+        //         channel: 'locationChannel'
+        //     });
         // this.setState({
         //   firebaseGps : this.props.gps
         // })
@@ -116,6 +112,9 @@ class App extends Component {
                     {messages.map((m, index) => <li key={'message' + index}>{m.message}</li>)}
                 </ul>
               </Col>
+          </Row>
+          <Row>
+              <button onClick={() => {this.publishLocationToChannel()}}>click this</button>
           </Row>
           <Row>
               <Col xs={6} md={4}>
