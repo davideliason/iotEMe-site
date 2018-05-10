@@ -12,11 +12,12 @@ import rootReducer from './common/redux/reducers/rootReducer';
 // import addGPSDataToFirebase from './common/redux/actions/addGPSDataToFirebase.js';
 // import getGPSDataFromFirebase from './common/redux/actions/getGPSDataFromFirebase.js';
 
-
 let logger = createLogger({
 	timestamp:true,
 	duration:true
 });
+
+
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk,logger));
 

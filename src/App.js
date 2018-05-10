@@ -3,6 +3,31 @@ import './App.css';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import PubNubReact from 'pubnub-react';
 
+var AWS = require('aws-sdk'); // require JS SDK
+AWS.config.update({
+    "accessKeyId": "AKIAIQVB6NKZ6NBIVVVA",
+    "secretAccessKey": "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"
+});
+// Create an S3 client
+var s3 = new AWS.S3();  // create new s3 bucket
+
+// Create a bucket and upload something into it
+
+
+  var params = {
+    Bucket: 'thursdaymorningmay162018bucket',
+    Key: 'helloworld2.txt',
+    Body: 'Hello World 2!'};
+
+   s3.putObject(params, function(err, data) {
+    if (err)
+      console.log(err)
+    else
+      console.log("Successfully uploaded");
+  });
+
+// Create an S3 client
+
 class App extends Component {
   constructor(props){
     super(props);
@@ -56,8 +81,10 @@ class App extends Component {
         //     });
         // this.setState({
         //   firebaseGps : this.props.gps
+       
         // })
-      }
+
+           }
 
   componentWillUnmount() {
         this.pubnub.unsubscribe({
