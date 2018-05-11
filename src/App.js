@@ -15,9 +15,9 @@ var s3 = new AWS.S3();  // create new s3 bucket
 
 
   var params = {
-    Bucket: 'thursdaymorningmay162018bucket',
-    Key: 'helloworld2.txt',
-    Body: 'Hello World 2!'};
+    Bucket: 'iotemespeechbucket',
+    Key: 'practice.txt',
+    Body: 'Hello World in the morning!'};
 
    s3.putObject(params, function(err, data) {
     if (err)
